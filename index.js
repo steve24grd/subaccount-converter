@@ -48,14 +48,35 @@ function HexStringToBlob(hexString) {
     return formattedArray.join('');
 }
 
+// Function to convert byte array to hex string
+function bytesToHexString(bytes) {
+    const buffer = Buffer.from(bytes);
+    return buffer.toString('hex');
+}
+
+// Function to convert hex string to byte array
+function hexStringToBytes(hexString) {
+    const buffer = Buffer.from(hexString, 'hex');
+    return Array.from(buffer);
+}
+
 (
     () => {
-        const nonce = 12;
-        const subaccount = convertToSubaccount(nonce);
-        console.log(subaccount);
+        //const nonce = 12;
+        //const subaccount = convertToSubaccount(nonce);
+        //console.log(subaccount);
 
         // const hexString = "0000000000000000000000000000000000000000000000000000000000000000";
         // const formattedString = HexStringToBlob(hexString);
         // console.log(formattedString);
+
+        // Conversion from byte array to hex string
+        const byteArray = [168, 200, 90, 30, 187, 129, 218, 133, 97, 52, 235, 109, 168, 55, 212, 238, 98, 209, 24, 158, 242, 1, 194, 93, 181, 15, 4, 103, 49, 38, 186, 62];
+        const hexString = bytesToHexString(byteArray);
+        console.log(hexString);
+
+        // Conversion from hex string to byte array
+        const newArray = hexStringToBytes(hexString);
+        console.log("Byte Array:", newArray);
     }
 )();
